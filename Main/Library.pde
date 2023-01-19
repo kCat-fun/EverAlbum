@@ -295,6 +295,8 @@ public class AnimationTextLib {
     String textStack = "";
     int index;
     boolean visible = false;
+    long watiStartTime;
+    long waitTime;
     
     String text;
     float x;
@@ -313,7 +315,7 @@ public class AnimationTextLib {
     
     //mode = 0のときdurationの時間内でテキストを表示する
     //mode = 1のとき1文字あたりintervalの時間(秒)でテキストを表示する
-    void setText(String _text, float _x, float _y, float _time, int _mode) {
+    void setText(String _text, float _x, float _y, float _time, int _mode, long _waitTime) {
         if (visible) {
             return;
         }
@@ -322,9 +324,11 @@ public class AnimationTextLib {
         this.y = _y;
         this.time = _time;
         this.mode = _mode;
+        this.waitTime = _waitTime;
         setVisible(true);
         textStack = "";
         isSetComplete = false;
+        watiStartTime = millis();
     }
     
     void setVisible(boolean _visible) {
@@ -332,7 +336,7 @@ public class AnimationTextLib {
     }
     
     void draw() {
-        if (!visible) {
+        if (!visible || millis() - watiStartTime <= waitTime) {
             return;
         }
         push();
@@ -381,12 +385,14 @@ public class ListTextLib {
     boolean writerFlag = false;
     int writerNum;
     long startTime;
+    long WATE_TIME = 100;
+    float textSpeed;
 
     ListTextLib() {
         papplet.registerMethod("draw", this);
     }
 
-    void setText(ArrayList<String> _str, ArrayList<Boolean> _needClick) {
+    void setText(ArrayList<String> _str, ArrayList<Boolean> _needClick, float textSpeed) {
         this.str = _str;
         this.needClick = _needClick;
         needClick.add(true);
@@ -396,17 +402,17 @@ public class ListTextLib {
     }
 
     void draw() {
-        if(!writerFlag) {
+        if(!writerFlag || millis()-startTime <= WATE_TIME) {
             return;
         }
-        if(!needClick.get(writerNum) && millis()-startTime > 1000) {
+        if(!needClick.get(min(writerNum, needClick.size()-1))) {
             animationTextLib.setVisible(false);
             writerNum++;
             if(writerNum > str.size()) {
                 writerFlag = false;
                 return;
             }
-            animationTextLib.setText(str.get(writerNum-1), 150, 615, 0.6, 0);
+            animationTextLib.setText(str.get(writerNum-1), 150, 615, textSpeed, 0, 0);
         }
     }
 
@@ -452,6 +458,7 @@ public class ListAudioPlayer {
     boolean playFlag = false;
     int playerNum;
     long startTime;
+    long WATE_TIME = 100;
 
     ListAudioPlayer() {
         papplet.registerMethod("draw", this);
@@ -467,7 +474,7 @@ public class ListAudioPlayer {
     }
 
     void draw() {
-        if(!playFlag || millis()-startTime <= 800) {
+        if(!playFlag || millis()-startTime <= WATE_TIME) {
             return;
         }
         if(playerNum >= voice.size() && !voice.get(min(playerNum, voice.size()-1)).isPlaying() && !needClick.get(min(playerNum, needClick.size()-1))) {
@@ -563,6 +570,7 @@ class Enumerator<T> {
 
 public class FadeInOut {
     boolean visible = false;
+    final float FADE_SPEED = 0.1;
     int fadeMode;
     float alpha;
     float n;
@@ -586,13 +594,13 @@ public class FadeInOut {
         fill(0, alpha*255);
         rect(0, 0, width, height);
         if(fadeMode == 0) {
-            n+=0.4;
+            n+=FADE_SPEED;
             if(n >= 1.0) {
                 fadeMode = 1;
             }
         }
         else {
-            n-=0.4;
+            n-=FADE_SPEED;
             if(alpha <= 0.0) {
                 visible = false;
             }

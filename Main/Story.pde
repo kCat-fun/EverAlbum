@@ -74,7 +74,7 @@ class Story implements Scene {
         float CENTER_Y = 670;
         float HALF_LINE = 15;
         float HEIGHT = HALF_LINE*sqrt(3);
-        float moveY = map(sin(frameCount/4.0), -1, 1, 0, 1)*10.0;
+        float moveY = map(sin(frameCount/12.0), -1, 1, 0, 1)*10.0;
         CENTER_Y += moveY;
         triangle(CENTER_X-HALF_LINE, CENTER_Y-HEIGHT*0.33, CENTER_X+HALF_LINE, CENTER_Y-HEIGHT*0.33, CENTER_X, CENTER_Y+HEIGHT*0.66);
     }

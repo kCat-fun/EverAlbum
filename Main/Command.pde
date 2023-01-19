@@ -1,4 +1,6 @@
 abstract class Command {
+    final float TEXT_SPEED = 1.0; 
+
     /*---------------
     <--- ルーム番号 --->
     0 : 工房
@@ -79,7 +81,7 @@ class ChangeDirectory extends Command {
             for(int i=0; i<super.roomNameList.length; i++) {
                 if(super.roomNameList[i].equals(cmd.get(0))) {
                     con.story.roomNum = i;
-                    animationTextLib.setText(con.story.roomList[con.story.roomNum].roomName+"に移動してきた", 150, 615, 0.6, 0);
+                    animationTextLib.setText(con.story.roomList[con.story.roomNum].roomName+"に移動してきた", 150, 615, super.TEXT_SPEED, 0, 500);
                     ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
                     audioList.add(fileIO.roomVoice[i]);
                     audioList.add(fileIO.actionVoice[0]);
@@ -205,7 +207,7 @@ class Touch extends Command {
             }
             if(audioList.size() > 0) {
                 listAudioPlayer.setAudio(audioList, needClick);
-                listTextLib.setText(strList, needClick);
+                listTextLib.setText(strList, needClick, super.TEXT_SPEED);
             }
         }
         // デバッグ用出力
@@ -252,7 +254,7 @@ class FileTransferProtocol extends Command {
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
-            animationTextLib.setText(subjectNameList.get(cmd.get(0))+"の課題を提出したぞ", 150, 615, 0.6, 0);
+            animationTextLib.setText(subjectNameList.get(cmd.get(0))+"の課題を提出したぞ", 150, 615, super.TEXT_SPEED, 0, 0);
             boolean flag = false;
             int i;
             for(i=0; i<subjectName.length; i++) {
@@ -291,7 +293,7 @@ class Concatenate extends Command {
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
-            animationTextLib.setText(subjectNameList.get(cmd.get(0))+"の授業を受けるところだ", 150, 615, 0.6, 0);
+            animationTextLib.setText(subjectNameList.get(cmd.get(0))+"の授業を受けるところだ", 150, 615, super.TEXT_SPEED, 0, 0);
             boolean flag = false;
             int i;
             for(i=0; i<subjectName.length; i++) {
@@ -334,7 +336,7 @@ class Import extends Command {
             audioList.add(fileIO.actionVoice[3]);
             strList.add("お昼ご飯を食べた");
             listAudioPlayer.setAudio(audioList, needClick);
-            listTextLib.setText(strList, needClick);
+            listTextLib.setText(strList, needClick, super.TEXT_SPEED);
         }
 
         // デバッグ用出力
@@ -362,7 +364,7 @@ class Return extends Command {
             audioList.add(fileIO.actionVoice[4]);
             strList.add("今日も一日頑張った！家に帰ろう！");
             listAudioPlayer.setAudio(audioList, needClick);
-            listTextLib.setText(strList, needClick);
+            listTextLib.setText(strList, needClick, super.TEXT_SPEED);
         }
 
         // デバッグ用出力
@@ -414,14 +416,14 @@ class Open extends Command {
                     audioList.add(fileIO.twitterVoice);
                     strList.add("Twitterが見たくなった");
                     listAudioPlayer.setAudio(audioList, needClick);
-                    listTextLib.setText(strList, needClick);
+                    listTextLib.setText(strList, needClick, super.TEXT_SPEED);
                     launch(dataPath("openTwitter.bat"));
                     break;
                 case "YouTube":
                     audioList.add(fileIO.youtubeVoice);
                     strList.add("YouTubeが見たくなった");
                     listAudioPlayer.setAudio(audioList, needClick);
-                    listTextLib.setText(strList, needClick);
+                    listTextLib.setText(strList, needClick, super.TEXT_SPEED);
                     launch(dataPath("openYouTube.bat"));
                     break;
                 default:
