@@ -610,7 +610,7 @@ public class FadeInOut {
 
 class Particle {
     Point[] points;
-    final int POINT_NUM = 50;
+    final int POINT_NUM = 30;
     boolean visible = false;
     long startTime;
     
@@ -620,7 +620,8 @@ class Particle {
     
     void setParticle(float x, float y) {
         for(int i=0; i<POINT_NUM; i++) {
-            points[i] = new Point(x, y, random(-3, 3), random(-3, 3), random(5, 10));
+            float theta = random(2*PI);
+            points[i] = new Point(x, y, cos(theta)*random(0.5, 3), sin(theta)*random(0.5, 3), random(5, 10));
         }
         visible = true;
         startTime = millis();

@@ -47,17 +47,19 @@ abstract class Command {
     
     // 引数の数にエラーがあればtrueを返す
     boolean errorArguments(Console con, ArrayList<String> cmd, int n) {
-        // 一番下の行を超すとき上に上げて調整
-        con.autoConsoleLineUp(2);
         // 引数がnを超過していれば
         if(cmd.size() > n) {
             con.cmdLineNum++;
             con.cmdLog[con.cmdLineNum] = "error: too many arguments";
+            // 一番下の行を超すとき上に上げて調整
+            con.autoConsoleLineUp(2);
             return true;
         }
         else if(cmd.size() < n) {
             con.cmdLineNum++;
             con.cmdLog[con.cmdLineNum] = "error: too few arguments";
+            // 一番下の行を超すとき上に上げて調整
+            con.autoConsoleLineUp(2);
             return true;
         }
         return false;
@@ -73,6 +75,7 @@ class ChangeDirectory extends Command {
         boolean flag = false;
         // コマンド実行
         if(!errorArguments(con, cmd, 1)) {
+            con.autoConsoleLineUp(1);
             for(int i=0; i<super.roomNameList.length; i++) {
                 if(super.roomNameList[i].equals(cmd.get(0))) {
                     con.story.roomNum = i;
@@ -169,11 +172,13 @@ class Touch extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 1)) {
+            con.autoConsoleLineUp(1);
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
 
             if(cmd.get(0).equals("Robot")) {
+                con.autoConsoleLineUp(1);
                 audioList.add(fileIO.robotVoice[0]);
                 audioList.add(fileIO.robotVoice[1]);
                 needClick.add(false);
@@ -182,6 +187,7 @@ class Touch extends Command {
                 strList.add("そのためのロボットを作っているところだ");
             }
             else if(cmd.get(0).equals("Processing")) {
+                con.autoConsoleLineUp(1);
                 audioList.add(fileIO.processingVoice[0]);
                 audioList.add(fileIO.processingVoice[1]);
                 audioList.add(fileIO.processingVoice[2]);
@@ -220,6 +226,7 @@ class PrintWorkingDirectory extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 0)) {
+            con.autoConsoleLineUp(2);
             con.cmdLineNum++;
             con.cmdLog[con.cmdLineNum] = "Path:kCat@home/"+super.roomNameList[con.story.roomNum];
         }
@@ -241,6 +248,7 @@ class FileTransferProtocol extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 1)) {
+            con.autoConsoleLineUp(1);
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
@@ -279,6 +287,7 @@ class Concatenate extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 1)) {
+            con.autoConsoleLineUp(1);
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
@@ -317,6 +326,7 @@ class Import extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 0)) {
+            con.autoConsoleLineUp(1);
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
@@ -344,6 +354,7 @@ class Return extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 0)) {
+            con.autoConsoleLineUp(1);
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
@@ -371,6 +382,7 @@ class Exit extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 0)) {
+            con.autoConsoleLineUp(1);
             animationTextLib.setVisible(false);
             app.changeScene(0);
         }
@@ -392,6 +404,7 @@ class Open extends Command {
     void run(Console con, ArrayList<String> cmd) {
         // コマンド実行
         if(!errorArguments(con, cmd, 1)) {
+            con.autoConsoleLineUp(1);
             ArrayList<AudioPlayer> audioList = new ArrayList<AudioPlayer>();
             ArrayList<String> strList = new ArrayList<String>();
             ArrayList<Boolean> needClick = new ArrayList<Boolean>();
