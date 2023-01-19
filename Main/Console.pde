@@ -9,7 +9,7 @@ class Console {
     final float WIDTH = 650;
     final float HEIGHT = 400;
     final int MAX_STRING = 37;
-    final int FLASH_SPAN = 10;
+    final int FLASH_SPAN = 50;
     final int MAX_LINE_NUM = 9;
     
     Console(Story _story) {

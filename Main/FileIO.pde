@@ -58,12 +58,19 @@ class FileIO {
         characterImg = loadImage("image/character.png");
         // 部屋の写真
         craftCenterImg = loadImage("image/craftCenter.jpg");
+        craftCenterImg.resize(width, height);
         r364Img = loadImage("image/r364.jpg");
+        r364Img.resize(width, height);
         r495Img = loadImage("image/r495.jpg");
+        r495Img.resize(width, height);
         largeClassRoom = loadImage("image/largeClassRoom.jpg");
+        largeClassRoom.resize(width, height);
         auditorium = loadImage("image/auditorim.jpg");
+        auditorium.resize(width, height);
         lunchRoom = loadImage("image/lunchRoom.jpg");
+        lunchRoom.resize(width, height);
         entranceImg = loadImage("image/entrance.jpg");
+        entranceImg.resize(width, height);
 
         // ----- 音声 -----
         /*--- 詳細 -------

@@ -15,7 +15,7 @@ class CraftCenter extends Room {
     }
 
     void draw() {
-        image(this.bgImage, 0, 0, width, height);
+        image(this.bgImage, 0, 0);
     }
 }
 
@@ -29,7 +29,7 @@ class R364 extends Room {
     }
 
     void draw() {
-        image(this.bgImage, 0, 0, width, height);
+        image(this.bgImage, 0, 0);
     }
 }
 
@@ -44,7 +44,7 @@ class R493 extends Room {
     }
 
     void draw() {
-        image(this.bgImage, 0, 0, width, height);
+        image(this.bgImage, 0, 0);
     }
 }
 
@@ -58,7 +58,7 @@ class LargeClassRoom extends Room {
     }
 
     void draw() {
-        image(this.bgImage, 0, 0, width, height);
+        image(this.bgImage, 0, 0);
     }
 }
 
@@ -72,7 +72,7 @@ class Auditorium extends Room {
     }
 
     void draw() {
-        image(this.bgImage, 0, 0, width, height);
+        image(this.bgImage, 0, 0);
     }
 }
 
@@ -85,7 +85,7 @@ class LunchRoom extends Room {
     }
 
     void draw() {
-        image(this.bgImage, 0, 0, width, height);
+        image(this.bgImage, 0, 0);
     }
 }
 
@@ -98,6 +98,6 @@ class Entrance extends Room {
     }
 
     void draw() {
-        image(this.bgImage, 0, 0, width, height);
+        image(this.bgImage, 0, 0);
     }
 }
