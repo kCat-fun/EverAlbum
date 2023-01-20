@@ -93,6 +93,11 @@ class Console {
         String cmdName = cmd.get(0).substring(11, cmd.get(0).length());
         // 存在しないコマンドを使用した場合の処理
         if(!cmdList.containsKey(cmdName)) {
+            // コマンドが空白だった場合
+            if(cmdName.length() == 0) {
+                autoConsoleLineUp(1);
+                return;
+            }
             // 一番下の行を超すとき上に上げて調整
             autoConsoleLineUp(2);
 
