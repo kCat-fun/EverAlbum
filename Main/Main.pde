@@ -2,12 +2,12 @@ import ddf.minim.*;
 
 Config conf;
 Minim minim;
+FileIO fileIO;
 ListAudioPlayer listAudioPlayer;
 AnimationTextLib animationTextLib;
 ListTextLib listTextLib;
 DecorationTextLib decorationTextLib;
 FadeInOut fadeInOut;
-FileIO fileIO;
 App app;
 
 void setup() {
