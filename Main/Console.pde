@@ -112,6 +112,8 @@ class Console {
     
     void keyPressed() {
         if(keyCode == ENTER) {
+            listAudioPlayer.clearPlayer();
+            listTextLib.clearWriter();
             // コマンド実行
             ArrayList<String> cmd = new ArrayList<String>();
             for(String s : split(cmdLog[cmdLineNum], ' ')) {

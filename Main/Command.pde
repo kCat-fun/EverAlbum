@@ -51,17 +51,17 @@ abstract class Command {
     boolean errorArguments(Console con, ArrayList<String> cmd, int n) {
         // 引数がnを超過していれば
         if(cmd.size() > n) {
-            con.cmdLineNum++;
-            con.cmdLog[con.cmdLineNum] = "error: too many arguments";
             // 一番下の行を超すとき上に上げて調整
             con.autoConsoleLineUp(2);
+            con.cmdLineNum++;
+            con.cmdLog[con.cmdLineNum] = "error: too many arguments";
             return true;
         }
         else if(cmd.size() < n) {
-            con.cmdLineNum++;
-            con.cmdLog[con.cmdLineNum] = "error: too few arguments";
             // 一番下の行を超すとき上に上げて調整
             con.autoConsoleLineUp(2);
+            con.cmdLineNum++;
+            con.cmdLog[con.cmdLineNum] = "error: too few arguments";
             return true;
         }
         return false;
@@ -94,12 +94,13 @@ class ChangeDirectory extends Command {
                     break;
                 }
             }
-        }
-
-        if(!flag) {
-            con.autoConsoleLineUp(2);
-            con.cmdLineNum++;
-            con.cmdLog[con.cmdLineNum] = "error: \""+cmd.get(0)+"\" does not exist";
+            if(!flag) {
+                con.autoConsoleLineUp(2);
+                if(cmd.size() > 0) {
+                    con.cmdLineNum++;
+                    con.cmdLog[con.cmdLineNum] = "error: \""+cmd.get(0)+"\" does not exist";
+                }
+            }
         }
 
         // デバッグ用出力

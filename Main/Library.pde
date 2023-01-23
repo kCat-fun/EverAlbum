@@ -400,6 +400,14 @@ public class ListTextLib {
         writerFlag = true;
         startTime = millis();
     }
+    
+    void clearWriter() {
+        writerFlag = false;
+        if(str != null) {
+            str.clear();
+            needClick.clear();
+        }
+    }
 
     void draw() {
         if(!writerFlag || millis()-startTime <= WATE_TIME) {
@@ -471,6 +479,14 @@ public class ListAudioPlayer {
         playerNum = 0;
         playFlag = true;
         startTime = millis();
+    }
+    
+    void clearPlayer() {
+        playFlag = false;
+        if(voice != null) {
+            voice.clear();
+            needClick.clear();
+        }
     }
 
     void draw() {
